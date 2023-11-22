@@ -57,12 +57,14 @@ const Layout = ({ children, page, changePage}) => {
 
                     <div className='h-fit overflow-auto select-none'>
 
-                        <div className={page === 'dashboard'? 'mx-4 flex justify-between items-center px-2 py-3 rounded-lg text-tet bg-sec' : 'mx-4 flex justify-between items-center px-2 py-3 rounded-lg text-tri hover:bg-sec hover:cursor-pointer'} onClick={() => changePage('dashboard')}>
+                        <div className={page === 'dashboard' ? 'mx-4 flex justify-between items-center px-2 py-3 rounded-lg text-tet bg-sec' :
+                        page === 'addprocess' ? 'mx-4 flex justify-between items-center px-2 py-3 rounded-lg text-tet bg-sec'
+                         : 'mx-4 flex justify-between items-center px-2 py-3 rounded-lg text-tri hover:bg-sec hover:cursor-pointer'} onClick={() => changePage('dashboard')}>
                             <div className='flex items-center'>
-                                <PiMonitorBold className='mx-1' size={15} color={page === 'dashboard' ? '#4680ff' : '#5c5c5c'}/>
+                                <PiMonitorBold className='mx-1' size={15} color={page === 'dashboard' ? '#4680ff' : page === 'addprocess' ? '#4680ff' : '#5c5c5c'}/>
                                 <p className='font-semibold text-sm'>Dashboard</p>
                             </div>
-                                <IoIosArrowForward className='mx-1' size={15} color={page === 'dashboard' ? '#4680ff' : '#5c5c5c'}/>
+                                <IoIosArrowForward className='mx-1' size={15} color={page === 'dashboard' ? '#4680ff' : page === 'addprocess' ? '#4680ff' : '#5c5c5c'}/>
                         </div>
 
                         <div className={page === 'patients'? 'mx-4 flex justify-between items-center px-2 py-3 rounded-lg text-tet bg-sec' : 'mx-4 flex justify-between items-center px-2 py-3 rounded-lg text-tri hover:bg-sec hover:cursor-pointer'} onClick={() => changePage('patients')}>
@@ -71,6 +73,14 @@ const Layout = ({ children, page, changePage}) => {
                                 <p className='font-semibold text-sm'>Patients</p>
                             </div>
                                 <IoIosArrowForward className='mx-1' size={15} color={page === 'patients' ? '#4680ff' : '#5c5c5c'}/>
+                        </div>
+                        
+                        <div className={page === 'staff'? 'mx-4 flex justify-between items-center px-2 py-3 rounded-lg text-tet bg-sec' : 'mx-4 flex justify-between items-center px-2 py-3 rounded-lg text-tri hover:bg-sec hover:cursor-pointer'} onClick={() => changePage('staff')}>
+                            <div className='flex items-center'>
+                                <GoPerson className='mx-1' size={15} color={page === 'staff' ? '#4680ff' : '#5c5c5c'}/>
+                                <p className='font-semibold text-sm'>Staff</p>
+                            </div>
+                                <IoIosArrowForward className='mx-1' size={15} color={page === 'staff' ? '#4680ff' : '#5c5c5c'}/>
                         </div>
 
                         <div className={page === 'appointment'? 'mx-4 flex justify-between items-center px-2 py-3 rounded-lg text-tet bg-sec' : 'mx-4 flex justify-between items-center px-2 py-3 rounded-lg text-tri hover:bg-sec hover:cursor-pointer'} onClick={() => changePage('appointment')}>
@@ -81,13 +91,6 @@ const Layout = ({ children, page, changePage}) => {
                                 <IoIosArrowForward className='mx-1' size={15} color={page === 'appointment' ? '#4680ff' : '#5c5c5c'}/>
                         </div>
 
-                        <div className={page === 'staff'? 'mx-4 flex justify-between items-center px-2 py-3 rounded-lg text-tet bg-sec' : 'mx-4 flex justify-between items-center px-2 py-3 rounded-lg text-tri hover:bg-sec hover:cursor-pointer'} onClick={() => changePage('staff')}>
-                            <div className='flex items-center'>
-                                <GoPerson className='mx-1' size={15} color={page === 'staff' ? '#4680ff' : '#5c5c5c'}/>
-                                <p className='font-semibold text-sm'>Staff</p>
-                            </div>
-                                <IoIosArrowForward className='mx-1' size={15} color={page === 'staff' ? '#4680ff' : '#5c5c5c'}/>
-                        </div>
 
                     </div>
 

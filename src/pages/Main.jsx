@@ -4,10 +4,12 @@ import Dashboard from "./Dashboard";
 import Patients from "./Patients";
 import Appointment from "./Appointment";
 import Staff from "./Staff";
+import AddProcess from './AddProcess';
+
+
 const Main = () => {
 
-  const [page, setPage] = useState('dashboard')
-
+  const [page, setPage] = useState('dashboard');
 
   const changePage = (p) => {
     setPage(p);
@@ -17,7 +19,10 @@ const Main = () => {
     <Layout page={page} changePage={changePage}>
       {
         page === 'dashboard' ?
-        <Dashboard />
+        <Dashboard changePage={changePage} />
+        :
+        page === 'addprocess' ? 
+        <AddProcess />
         :
         page === 'patients' ?
         <Patients />
