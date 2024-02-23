@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import Layout from '../components/Layout';
 import Dashboard from "./Dashboard";
 import Patients from "./Patients";
-import Appointment from "./Appointment";
 import Staff from "./Staff";
 import AddProcess from './AddProcess';
+import AddPatient from './AddPatient';
+import AddStaff from './AddStaff';
 
-
-const Main = () => {
+const Main = ({User}) => {
 
   const [page, setPage] = useState('dashboard');
 
@@ -16,22 +16,25 @@ const Main = () => {
   }
 
   return (
-    <Layout page={page} changePage={changePage}>
+    <Layout page={page} changePage={changePage} User={User}>
       {
         page === 'dashboard' ?
-        <Dashboard changePage={changePage} />
+        <Dashboard changePage={changePage} User={User}/>
         :
         page === 'addprocess' ? 
         <AddProcess />
         :
         page === 'patients' ?
-        <Patients />
+        <Patients changePage={changePage}/>
         :
-        page === 'appointment' ?
-        <Appointment />
+        page === 'addpatient' ?
+        <AddPatient />
         :
         page === 'staff' ?
-        <Staff />
+        <Staff User={User} changePage={changePage}/>
+        :
+        page === 'addstaff' ?
+        <AddStaff />
         :
         <div></div>
       }

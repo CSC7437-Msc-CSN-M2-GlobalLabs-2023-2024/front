@@ -1,80 +1,99 @@
 import React, { useState, useEffect } from 'react'
 import { FaPlus } from "react-icons/fa6";
-import { BiSolidEdit } from "react-icons/bi";
-import db from "../components/db.json";
-import axios from 'axios';
 
-const Dashboard = ( {changePage} ) => {
+const Dashboard = ( {changePage, User} ) => {
 
-  // const Processes = [
-  //   { id: 1, injury: "Too Handsome", name: "Charbel", progress: 2 },
-  //   { id: 2, injury: "Back pain", name: "Alice", progress: 4 },
-  //   { id: 3, injury: "Headache", name: "Bob", progress: 3 },
-  //   { id: 4, injury: "Muscle strain", name: "Eva", progress: 3 },
-  //   { id: 5, injury: "Knee injury", name: "Mike", progress: 2 },
-  //   { id: 6, injury: "Shoulder pain", name: "Sara", progress: 4 },
-  //   { id: 7, injury: "Fractured wrist", name: "Tom", progress: 1 },
-  //   { id: 8, injury: "Neck stiffness", name: "Emily", progress: 5 },
-  //   { id: 9, injury: "Torn ligament", name: "Chris", progress: 4 },
-  //   { id: 10, injury: "Migraine", name: "Olivia", progress: 3 }
-  // ];
+  const [Processes, setProcesses] = useState(); 
 
-  const Processes = db.Processes; 
-
-  const Patients = db.Patients;
-
-  const Staff = db.Staff;
-
-  const Stages = db.Stages;
-
-  const total_Progress = 5;
+  // const total_Progress = 5;
 
   const [base_tuples, setBase_tuples] = useState(5)
 
-  const [test, setTest] = useState("Test")
-
 
   useEffect(() => {
-    if (base_tuples > Processes.length) {
-      setBase_tuples(Processes.length);
+
+    const a = [];
+    User.processIds.map((id) => (
+      a.push(fetchProcesses(id))
+    ));
+
+    setProcesses(a);
+
+
+    if (base_tuples > Processes?.length) {
+      setBase_tuples(Processes?.length);
     }
   }, [])
 
 
-  const getApi = () => {
-    axios.get("localhost:8080/hello").then(function (response){
-      setTest(response);
+  const fetchProcesses = (id) => {
+    fetch(`http://localhost:8080/api/process/getById/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: 'admin@admin.com',
+            passwordHash: 'admin'
+        })
     })
-  }
-  
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+      return data;
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 
-  const getPatientByID = (id) => {
-    for(var i = 0; i < Patients.length ; i ++){
-      if(Patients[i].id === id){
-        return Patients[i];
-      }
-    }
   }
+
+
 
   const getStagesByID = (id) => {
-    for(var i = 0; i < Stages.length ; i ++){
-      if(Stages[i].id === id){
-        return Stages[i];
-      }
-    }
+    
+
+    fetch('http://localhost:8080/api/stage/getById/1', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: 'admin@admin.com',
+            passwordHash: 'admin'
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // console.log('Stage:', data);
+        return data;
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+
+
   }
 
   const getProcessProgress = (process) => {
-    const total = process.stages.length;
+    const total = process.stageIds.length;
     const stages = [];
     for(var i = 0 ; i < total ; i++){
-      stages.push(getStagesByID(process.stages[i]));
+      stages.push(getStagesByID(process.stageIds[i]));
     }
 
     let done = 0;
-    for(var i = 0 ; i < total ; i++){
-      console.log(stages[i])
-      if(stages[i].completed){
+    for(var j = 0 ; j < total ; j++){
+      if(stages[j].completed){
         done+=1;
       }
     }
@@ -84,16 +103,16 @@ const Dashboard = ( {changePage} ) => {
 
   const increaseBaseTuples = () => {
     let newBase = base_tuples+5;
-    if (newBase > Processes.length) {
-      newBase = Processes.length;
+    if (newBase > Processes?.length) {
+      newBase = Processes?.length;
     }
     setBase_tuples(newBase);
   }
 
   const decreaseBaseTuples = () => {
     let newBase = 5;
-    if(Processes.length < 5){
-      newBase = Processes.length;
+    if(Processes?.length < 5){
+      newBase = Processes?.length;
     }
     setBase_tuples(newBase);
   }
@@ -116,8 +135,8 @@ const Dashboard = ( {changePage} ) => {
       color = '#FFBC00';
     }
 
-    var done = percentage/100*process.stages.length;
-    var total = process.stages.length;
+    var done = percentage/100*process.stageIds.length;
+    var total = process.stageIds.length;
     
     for(let i = 0; i < total ; i++){
 
@@ -164,30 +183,13 @@ const Dashboard = ( {changePage} ) => {
         {/* TITLE AND ADD A PROCESS */}
         <div className='flex items-center justify-between border-b-2 border-sec p-2 m-2'>
           <p className='font-bold text-lg'>PROCESSES</p>
-          {/* <div onClick={getApi}>{test}</div> */}
-          <div className='flex items-center justify-center rounded-full bg-pen p-2 drop-shadow-lg select-none hover:cursor-pointer'>
+          <div className='flex items-center justify-center rounded-full bg-pen p-2 drop-shadow-lg select-none hover:cursor-pointer' onClick={() => {changePage("addprocess")}}>
             <FaPlus color='#ffffff' size={12}/> <p className='ml-1 font-semibold text-white text-xs'>ADD PROCESS</p>
           </div>
         </div>
 
-
-        {/* ORDER BY */}
-        {/* <div className='flex items-center justify-between mt-2 mx-2'>
-          <p className='font-semibold text-xs'>Order By</p>
-
-          <div className='flex justify-center items-center'>
-            <select className='border-none bg-transparent'>
-              <option>Priority</option>
-            </select>
-          </div>
-        </div> */}
-
-        {/* ID INJURY PATIENT_NAME PROGRESS OPEN */}
-        <div className='flex items-center justify-center m-2 px-2 pb-2 border-b-2 border-sec'>
-          {/* ID */}
-          <div className='w-1/12'>
-            <p className='font-bold text-sm'>ID</p>
-          </div>
+        {/* INJURY PATIENT_NAME PROGRESS OPEN */}
+        <div className='flex items-center justify-start m-2 px-2 pb-2 border-b-2 border-sec'>
 
           {/* INJURY */}
           <div className='w-3/12'>
@@ -203,11 +205,7 @@ const Dashboard = ( {changePage} ) => {
           <div className='w-3/12'>
             <p className='font-bold text-sm'>Progress</p>
           </div>
-
-          {/* OPEN */}
-          <div className='w-2/12'>
-            <p className='font-bold text-sm'>Edit</p>
-          </div>
+          
         </div>
 
 
@@ -215,10 +213,6 @@ const Dashboard = ( {changePage} ) => {
         {Processes?.map((process, index) => (
           index < base_tuples ?
           <div className='flex items-center justify-start m-2 p-2 bg-sec'>
-            {/* ID */}
-            <div className='w-1/12 flex items-center justify-start'>
-              <p className='font-semibold text-sm'>{process.id}</p>
-            </div>
 
             {/* INJURY NAME */}
             <div className='w-3/12 flex items-center justify-start'>
@@ -227,7 +221,7 @@ const Dashboard = ( {changePage} ) => {
 
             {/* PATIENT_NAME */}
             <div className='w-3/12 flex items-center justify-start'>
-              <p className='font-semibold text-sm'>{getPatientByID(process.patient).firstname + " " + getPatientByID(process.patient).lastname}</p>
+              <p className='font-semibold text-sm'>{process.patientId.firstname + " " + process.patientId.lastname}</p>
             </div>
 
             {/* PROGRESS */}
@@ -237,11 +231,6 @@ const Dashboard = ( {changePage} ) => {
               </div>
               <p className='font-semibold text-sm ml-1'>{getProcessProgress(process)}%</p>
             </div>
-
-            {/* OPEN */}
-            <div className='w-2/12 flex items-center justify-start'>
-              <BiSolidEdit size={24} color='#6ec473' className='hover:cursor-pointer'/>
-            </div>
           </div>
           :
           ""
@@ -249,10 +238,10 @@ const Dashboard = ( {changePage} ) => {
 
         {/* SEE ALL */}
         {
-          Processes.length < 5 ?
+          Processes?.length < 5 ?
           <></>
           :
-          base_tuples === Processes.length ?
+          base_tuples === Processes?.length ?
           <div className='flex items-center justify-center m-2 px-2 pt-2 border-t-2 border-sec select-none hover:cursor-pointer' onClick={decreaseBaseTuples}>
             <p className='font-bold text-sm'>VIEW LESS</p>
           </div>

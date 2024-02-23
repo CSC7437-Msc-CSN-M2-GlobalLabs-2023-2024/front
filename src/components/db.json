@@ -1,407 +1,166 @@
 {
   "Staff": [
     {
-      "id": 1,
-      "firstname": "John",
-      "lastname": "Doe",
+      "email": "john.doe@example.com",
+      "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+      "firstName": "John",
+      "lastName": "Doe",
       "position": "Doctor",
-      "processes": [101, 102, 104, 107],
-      "contactInfo": {
-        "email": "john.doe@example.com",
-        "phone": "123-456-7890"
-      }
+      "admin": true
     },
     {
-      "id": 2,
-      "firstname": "Jane",
-      "lastname": "Smith",
+      "email": "jane.smith@example.com",
+      "passwordHash": "c6ba91b90d922e159893f46c387e5dc1b3dc5c101a5a4522f03b987177a24a91",
+      "firstName": "Jane",
+      "lastName": "Smith",
       "position": "Nurse",
-      "processes": [101, 103, 105, 108],
-      "contactInfo": {
-        "email": "jane.smith@example.com",
-        "phone": "987-654-3210"
-      }
+      "admin": false
     },
     {
-      "id": 3,
-      "firstname": "Robert",
-      "lastname": "Johnson",
-      "position": "Technician",
-      "processes": [102, 106, 109],
-      "contactInfo": {
-        "email": "robert.johnson@example.com",
-        "phone": "555-123-4567"
-      }
+      "email": "emily.williams@example.com",
+      "passwordHash": "5efc2b017da4f7736d192a74dde5891369e0685d4d38f2a455b6fcdab282df9c",
+      "firstName": "Emily",
+      "lastName": "Williams",
+      "position": "Doctor",
+      "admin": false
     },
     {
-      "id": 4,
-      "firstname": "Emily",
-      "lastname": "Williams",
+      "email": "michael.jones@example.com",
+      "passwordHash": "d1482ec79dcd15d6367b8cec022d675a924a2d56c2bb45b274c4c10ccc889a4b",
+      "firstName": "Michael",
+      "lastName": "Jones",
       "position": "Nurse",
-      "processes": [103, 105, 110],
-      "contactInfo": {
-        "email": "emily.williams@example.com",
-        "phone": "333-999-8888"
-      }
+      "admin": false
     },
     {
-      "id": 5,
-      "firstname": "Michael",
-      "lastname": "Jones",
-      "position": "Surgeon",
-      "processes": [104, 107, 111],
-      "contactInfo": {
-        "email": "michael.jones@example.com",
-        "phone": "777-222-1111"
-      }
+      "email": "lisa.brown@example.com",
+      "passwordHash": "a1b2c3d4e5f6",
+      "firstName": "Lisa",
+      "lastName": "Brown",
+      "position": "Doctor",
+      "admin": false
     },
     {
-      "id": 6,
-      "firstname": "Sophie",
-      "lastname": "Davis",
-      "position": "Radiologist",
-      "processes": [112, 113],
-      "contactInfo": {
-        "email": "sophie.davis@example.com",
-        "phone": "444-555-6666"
-      }
-    },
-    {
-      "id": 7,
-      "firstname": "William",
-      "lastname": "Miller",
-      "position": "Physiotherapist",
-      "processes": [114, 115],
-      "contactInfo": {
-        "email": "william.miller@example.com",
-        "phone": "999-888-7777"
-      }
-    },
-    {
-      "id": 8,
-      "firstname": "Olivia",
-      "lastname": "Brown",
-      "position": "Psychologist",
-      "processes": [116, 117],
-      "contactInfo": {
-        "email": "olivia.brown@example.com",
-        "phone": "666-777-8888"
-      }
-    },
-    {
-      "id": 9,
-      "firstname": "Daniel",
-      "lastname": "Taylor",
-      "position": "Anesthesiologist",
-      "processes": [118, 119],
-      "contactInfo": {
-        "email": "daniel.taylor@example.com",
-        "phone": "111-222-3333"
-      }
-    },
-    {
-      "id": 10,
-      "firstname": "Ava",
-      "lastname": "Clark",
-      "position": "Dietician",
-      "processes": [120, 121],
-      "contactInfo": {
-        "email": "ava.clark@example.com",
-        "phone": "222-333-4444"
-      }
-    },
-    {
-      "id": 11,
-      "firstname": "David",
-      "lastname": "Martin",
-      "position": "Orthopedic Surgeon",
-      "processes": [122, 123],
-      "contactInfo": {
-        "email": "david.martin@example.com",
-        "phone": "333-444-5555"
-      }
-    },
-    {
-      "id": 12,
-      "firstname": "Sophia",
-      "lastname": "Garcia",
-      "position": "Speech Therapist",
-      "processes": [124, 125],
-      "contactInfo": {
-        "email": "sophia.garcia@example.com",
-        "phone": "555-666-7777"
-      }
+      "email": "mark.thomas@example.com",
+      "passwordHash": "f1e2d3c4b5a6",
+      "firstName": "Mark",
+      "lastName": "Thomas",
+      "position": "Nurse",
+      "admin": false
     }
   ],
   "Patients": [
     {
-      "id": 1,
-      "firstname": "Alice",
-      "lastname": "Johnson",
+      "email": "alice.johnson@example.com",
+      "firstName": "Alice",
+      "lastName": "Johnson",
       "sex": "Female",
-      "age": 30,
-      "contactInfo": "111-222-3333"
+      "age": 30
     },
     {
-      "id": 2,
-      "firstname": "Bob",
-      "lastname": "Williams",
+      "email": "bob.williams@example.com",
+      "firstName": "Bob",
+      "lastName": "Williams",
       "sex": "Male",
-      "age": 45,
-      "contactInfo": "444-555-6666"
+      "age": 45
     },
     {
-      "id": 3,
-      "firstname": "Eva",
-      "lastname": "Miller",
+      "email": "carol.daniels@example.com",
+      "firstName": "Carol",
+      "lastName": "Daniels",
       "sex": "Female",
-      "age": 25,
-      "contactInfo": "777-888-9999"
+      "age": 38
     },
     {
-      "id": 4,
-      "firstname": "David",
-      "lastname": "Smith",
+      "email": "dave.harris@example.com",
+      "firstName": "Dave",
+      "lastName": "Harris",
       "sex": "Male",
-      "age": 35,
-      "contactInfo": "999-111-7777"
-    },
-    {
-      "id": 5,
-      "firstname": "Sophia",
-      "lastname": "Brown",
-      "sex": "Female",
-      "age": 40,
-      "contactInfo": "222-333-4444"
-    },
-    {
-      "id": 6,
-      "firstname": "Jack",
-      "lastname": "Jones",
-      "sex": "Male",
-      "age": 32,
-      "contactInfo": "666-999-1111"
-    },
-    {
-      "id": 7,
-      "firstname": "Mia",
-      "lastname": "Davis",
-      "sex": "Female",
-      "age": 28,
-      "contactInfo": "555-444-3333"
-    },
-    {
-      "id": 8,
-      "firstname": "Noah",
-      "lastname": "Wilson",
-      "sex": "Male",
-      "age": 50,
-      "contactInfo": "888-777-6666"
-    },
-    {
-      "id": 9,
-      "firstname": "Emma",
-      "lastname": "Moore",
-      "sex": "Female",
-      "age": 22,
-      "contactInfo": "111-555-8888"
-    },
-    {
-      "id": 10,
-      "firstname": "Liam",
-      "lastname": "Evans",
-      "sex": "Male",
-      "age": 55,
-      "contactInfo": "777-666-5555"
-    },
-    {
-      "id": 11,
-      "firstname": "Aria",
-      "lastname": "Perez",
-      "sex": "Female",
-      "age": 35,
-      "contactInfo": "333-888-4444"
-    },
-    {
-      "id": 12,
-      "firstname": "Ethan",
-      "lastname": "Cruz",
-      "sex": "Male",
-      "age": 60,
-      "contactInfo": "555-111-6666"
+      "age": 42
     }
   ],
   "Processes": [
     {
-      "id": 101,
       "name": "Medical Checkup",
-      "patient": 1,
-      "staff": [1, 2, 6, 9],
-      "stages": [201, 202, 203, 204, 205, 206, 207, 208]
+      "patientId": {
+        "email": "alice.johnson@example.com",
+        "firstName": "Alice",
+        "lastName": "Johnson",
+        "age": 30
+      },
+      "staffEmails": ["john.doe@example.com", "jane.smith@example.com"],
+      "stageIds": [1, 2, 5]
     },
     {
-      "id": 102,
-      "name": "X-ray Imaging",
-      "patient": 2,
-      "staff": [1, 3, 7, 10],
-      "stages": [209, 202, 202, 203, 204]
-    },
-    {
-      "id": 103,
       "name": "Blood Test",
-      "patient": 3,
-      "staff": [2, 4, 8, 11],
-      "stages": [207, 208, 209, 201, 202, 212, 213, 214]
+      "patientId": {
+        "email": "bob.williams@example.com",
+        "firstName": "Bob",
+        "lastName": "Williams",
+        "age": 45
+      },
+      "staffEmails": ["emily.williams@example.com", "michael.jones@example.com"],
+      "stageIds": [3, 4, 6]
     },
     {
-      "id": 104,
-      "name": "Follow-up Consultation",
-      "patient": 4,
-      "staff": [1, 5, 9, 12],
-      "stages": [205, 206, 207, 208, 209, 203, 211, 212]
+      "name": "Routine Screening",
+      "patientId": {
+        "email": "carol.daniels@example.com",
+        "firstName": "Carol",
+        "lastName": "Daniels",
+        "age": 38
+      },
+      "staffEmails": ["lisa.brown@example.com"],
+      "stageIds": [2, 5]
     },
     {
-      "id": 105,
-      "name": "Physical Therapy",
-      "patient": 5,
-      "staff": [2, 4, 7, 10],
-      "stages": [213, 214, 205, 206, 207, 208, 209, 214]
-    },
-    {
-      "id": 106,
-      "name": "MRI Scan",
-      "patient": 6,
-      "staff": [3, 11, 12],
-      "stages": [211, 212, 203, 214, 205, 206, 207, 208]
-    },
-    {
-      "id": 107,
-      "name": "Surgery",
-      "patient": 7,
-      "staff": [5, 8, 10, 11],
-      "stages": [209, 205, 211, 212, 213, 214, 201, 206]
-    },
-    {
-      "id": 108,
-      "name": "Rehabilitation",
-      "patient": 8,
-      "staff": [4, 6, 9, 12],
-      "stages": [207, 208, 209, 210, 211, 212, 213, 214]
-    },
-    {
-      "id": 109,
-      "name": "Heart Checkup",
-      "patient": 9,
-      "staff": [1, 2, 7, 10],
-      "stages": [205, 206, 207, 208, 209, 210, 211, 212]
-    },
-    {
-      "id": 110,
-      "name": "Vision Test",
-      "patient": 10,
-      "staff": [3, 4, 8, 11],
-      "stages": [213, 214, 205, 206, 207, 208, 209, 210]
-    },
-    {
-      "id": 111,
-      "name": "Dental Checkup",
-      "patient": 11,
-      "staff": [5, 6, 9, 12],
-      "stages": [211, 212, 213, 214, 205, 206, 207, 208]
-    },
-    {
-      "id": 112,
-      "name": "Cancer Screening",
-      "patient": 12,
-      "staff": [1, 7, 10, 11],
-      "stages": [209, 210, 211, 212, 213, 214, 205, 206]
+      "name": "Vaccination",
+      "patientId": {
+        "email": "dave.harris@example.com",
+        "firstName": "Dave",
+        "lastName": "Harris",
+        "age": 42
+      },
+      "staffEmails": ["mark.thomas@example.com"],
+      "stageIds": [1, 4, 6]
     }
   ],
   "Stages": [
     {
-      "id": 201,
       "name": "Initial Examination",
       "completed": true,
-      "staff": 1
+      "staffEmail": "john.doe@example.com",
+      "id": 1
     },
     {
-      "id": 202,
       "name": "Vital Signs Check",
-      "completed": true,
-      "staff": 2
+      "completed": false,
+      "staffEmail": "jane.smith@example.com",
+      "id": 2
     },
     {
-      "id": 203,
-      "name": "Medical History Review",
-      "completed": true,
-      "staff": 6
-    },
-    {
-      "id": 204,
-      "name": "X-ray Scan",
-      "completed": true,
-      "staff": 1
-    },
-    {
-      "id": 205,
-      "name": "Image Analysis",
-      "completed": true,
-      "staff": 3
-    },
-    {
-      "id": 206,
       "name": "Blood Sample Collection",
       "completed": true,
-      "staff": 2
+      "staffEmail": "emily.williams@example.com",
+      "id": 3
     },
     {
-      "id": 207,
       "name": "Lab Testing",
-      "completed": true,
-      "staff": 2
-    },
-    {
-      "id": 208,
-      "name": "Follow-up Discussion",
       "completed": false,
-      "staff": 1
+      "staffEmail": "michael.jones@example.com",
+      "id": 4
     },
     {
-      "id": 209,
-      "name": "X-ray Preparation",
+      "name": "Patient Registration",
       "completed": true,
-      "staff": 1
+      "staffEmail": "lisa.brown@example.com",
+      "id": 5
     },
     {
-      "id": 210,
-      "name": "X-ray Examination",
+      "name": "Vaccine Administration",
       "completed": false,
-      "staff": 3
-    },
-    {
-      "id": 211,
-      "name": "MRI Setup",
-      "completed": true,
-      "staff": 7
-    },
-    {
-      "id": 212,
-      "name": "MRI Scanning",
-      "completed": false,
-      "staff": 10
-    },
-    {
-      "id": 213,
-      "name": "Surgery Planning",
-      "completed": true,
-      "staff": 5
-    },
-    {
-      "id": 214,
-      "name": "Surgical Procedure",
-      "completed": false,
-      "staff": 8
+      "staffEmail": "mark.thomas@example.com",
+      "id": 6
     }
-
-  ]
+  ]  
 }
