@@ -78,7 +78,7 @@ const Patients = ({changePage}) => {
         {/* ID FIRSTNAME LASTNAME SEX AGE CONTACT */}
       <div className='flex items-center justify-start m-2 px-2 pb-2 border-b-2 border-sec'>
 
-          {/* FI  RST NAME */}
+          {/* FIRST NAME */}
         <div className='w-2/12'>
           <p className='font-bold text-sm'>First Name</p>
         </div>

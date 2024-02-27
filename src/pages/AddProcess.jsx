@@ -17,6 +17,7 @@ const AddProcess = () => {
   const [addStage, setAddStage] = useState(false);
   const [stages, setStages] = useState([]);
   const [submitResult, setSubmitResult] = useState("");
+  const [processId, setProcessId] = useState(-1);
 
 
   const handleStageBool = () => {
@@ -30,6 +31,7 @@ const AddProcess = () => {
     }else{ 
 
       const emails = email.current.value.trim().split(" ");
+      console.log(emails)
 
 
       fetch('http://localhost:8080/api/process/create', {
@@ -50,8 +52,45 @@ const AddProcess = () => {
                 lastName: lastname.current.value.trim(),
                 email: email.current.value.trim(),
                 age: age.current.value.trim()
-              }
+              },
+              stageIds: []
             }
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+          setSubmitResult("Network response was not ok!");
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // console.log('Newly created process:', data);
+        setSubmitResult("Success!");
+        stages?.map((stage) => (
+          postStages(stage)
+        ));
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+        setSubmitResult("There was a problem with the fetch operation!");
+    });
+
+
+
+    }
+  }
+
+  const postStages = (stage) => {
+
+    fetch('http://localhost:8080/api/process/getAll', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: 'admin@admin.com',
+            passwordHash: 'admin'
         })
     })
     .then(response => {
@@ -61,24 +100,22 @@ const AddProcess = () => {
         return response.json();
     })
     .then(data => {
-        console.log('Newly created process:', data);
+        // console.log('Processes:', data);
+        const paid = {
+          firstName: firstname.current.value.trim(),
+          lastName: lastname.current.value.trim(),
+          email: email.current.value.trim(),
+          age: age.current.value.trim()
+        }
+        data.map((p) => {
+          if(p.name === name.current.value.trim() && p.patientId === paid){
+            setProcessId(p.id);
+          }
+      });
     })
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
     });
-
-
-
-        setSubmitResult("Success!");
-    }
-  }
-
-  const handleAddStage = () => {
-
-    if(stageName.current.value.trim() === "" || stageStaff.current.value.trim() === ""){
-      setSubmitResult("Please fill all fields of the stage!");
-      return;
-    }
 
     fetch('http://localhost:8080/api/stage/create', {
         method: 'POST',
@@ -91,9 +128,10 @@ const AddProcess = () => {
                 passwordHash: 'admin'
             },
             stage: {
-              name: stageName.current.value.trim(),
-              completed: false,
-              staffEmail: stageStaff.current.value.trim()
+              name: stage.name,
+              completed: stage.completed,
+              staffEmail: stage.staffEmail,
+              processId: processId
             }
         })
     })
@@ -109,6 +147,16 @@ const AddProcess = () => {
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
     });
+
+  }
+
+  const handleAddStage = () => {
+
+    if(stageName.current.value.trim() === "" || stageStaff.current.value.trim() === ""){
+      setSubmitResult("Please fill all fields of the stage!");
+      return;
+    }
+
 
     const s = {name: stageName.current.value.trim(), completed: false, staffEmail: stageStaff.current.value.trim()}
     const a = stages;

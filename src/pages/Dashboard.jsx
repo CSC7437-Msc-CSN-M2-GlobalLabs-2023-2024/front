@@ -13,7 +13,7 @@ const Dashboard = ( {changePage, User} ) => {
   useEffect(() => {
 
     const a = [];
-    User.processIds.map((id) => (
+    User?.processIds.map((id) => (
       a.push(fetchProcesses(id))
     ));
 
@@ -24,6 +24,7 @@ const Dashboard = ( {changePage, User} ) => {
       setBase_tuples(Processes?.length);
     }
   }, [])
+
 
 
   const fetchProcesses = (id) => {

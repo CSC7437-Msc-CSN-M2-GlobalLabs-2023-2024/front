@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import db from "../components/db.json";
 import { FaPlus } from "react-icons/fa6";
 
 
@@ -71,7 +70,7 @@ const Staff = ( { User, changePage }) => {
       {/* TITLE AND ADD A PROCESS */}
       <div className='flex items-center justify-between border-b-2 border-sec p-2 m-2'>
         <p className='font-bold text-lg'>STAFF</p>
-        <div className={User.admin ? 'flex items-center justify-center rounded-full bg-pen p-2 drop-shadow-lg select-none hover:cursor-pointer' : 'hidden'} onClick={() => changePage("addstaff")}>
+        <div className={User?.admin ? 'flex items-center justify-center rounded-full bg-pen p-2 drop-shadow-lg select-none hover:cursor-pointer' : 'hidden'} onClick={() => changePage("addstaff")}>
           <FaPlus color='#ffffff' size={12}/> <p className='ml-1 font-semibold text-white text-xs'>ADD STAFF</p>
         </div>
       </div>

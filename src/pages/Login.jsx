@@ -16,14 +16,10 @@ const Login = () => {
 
   const [resultMess, setResultMess] = useState("");
 
-  async function digestMessage(message) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(message);
-    const hash = await crypto.subtle.digest("SHA-256", data);
-    return hash;
-  }
+    // sending the login information to see if the account exist or if the password is correct
 
-  const handleSubmit = () => {
+  async function handleSubmit(){
+
 
     fetch('http://localhost:8080/api/staff/login', {
         method: 'POST',
@@ -32,17 +28,18 @@ const Login = () => {
         },
         body: JSON.stringify({
             email: email.current.value.trim(),
-            passwordHash: digestMessage(pass.current.value.trim())
+            passwordHash: pass.current.value.trim()
         })
     })
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return response.json();
+        return response.text();
     })
     .then(data => {
         console.log('Staff members:', data);
+        sessionStorage.setItem("user", email.current.value.trim());
         navigate("/main");
 
     })
@@ -63,18 +60,25 @@ const Login = () => {
             </div>
         </div>
         <div className="inputs">
+            {/* EMAIL INPUT */}
             <div className="input">
                 <img src={username_icon} alt=""/>
                 <input ref={email} type="text" placeholder='Email' />
             </div>
+
+            {/* PASSWORD INPUT */}
             <div className="input">
                 <img src={password_icon} alt=""/>
                 <input ref={pass} type="password" placeholder='Password'/>
             </div>
         </div>
+
+        {/* SUBMIT BUTTON */}
         <div className="submit-container">
             <div className={"submit"} onClick={()=>{handleSubmit()}}>Login</div>
         </div>
+
+        {/* ERROR MESSAGE THAT SHOWS WHEN INCORRECT CREDENTIALS */}
         <div className={resultMess === "" ? "hidden" : "flex justify-center items-center text-2xl m-2 text-red-600 font-bold"}>
             <p>{resultMess}</p>
         </div>

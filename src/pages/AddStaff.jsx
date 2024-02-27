@@ -12,14 +12,6 @@ const AddPatient = () => {
     const [submitResult, setSubmitResult] = useState("");
 
 
-    async function digestMessage(message) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(message);
-        const hash = await crypto.subtle.digest("SHA-256", data);
-        return hash;
-      }
-
-
     const handleSubmit = () => {
         if(firstname.current.value.trim() === '' || lastname.current.value.trim() === '' || email.current.value.trim() === '' || password.current.value === '' || position.current.value === ''){
             setSubmitResult("Please fill all fields!");
@@ -44,15 +36,16 @@ const AddPatient = () => {
                         email: email.current.value.trim(),
                         firstName: firstname.current.value.trim(),
                         lastName: lastname.current.value.trim(),
-                        passwordHash: digestMessage(password.current.value.trim()),
+                        passwordHash: password.current.value.trim(),
                         position: position.current.value.trim(),
-                        admin: admin.current.checked
+                        admin: admin.current.checked,
+                        stageIds: []
                     }
                 })
             })
             .then(response => {
                 if (!response.ok) {
-                    setSubmitResult("Network response was not ok");
+                    setSubmitResult("Network response was not ok!");
                     throw new Error('Network response was not ok');
                 }
                 return response.json();
@@ -63,7 +56,7 @@ const AddPatient = () => {
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
-                setSubmitResult('There was a problem with the fetch operation');
+                setSubmitResult('There was a problem with the fetch operation!');
             });
 
 

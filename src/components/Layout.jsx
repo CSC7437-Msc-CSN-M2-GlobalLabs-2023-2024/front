@@ -5,11 +5,20 @@ import { PiMonitorBold } from 'react-icons/pi';
 import { IoIosArrowForward } from 'react-icons/io';
 import { GoPeople } from 'react-icons/go';
 import { GoPerson } from 'react-icons/go';
+import { useNavigate } from 'react-router-dom'
 
 
 
 
 const Layout = ({ children, page, changePage, User}) => {
+
+    
+    const navigate = useNavigate();
+
+    const handleLogOut = () => {
+        sessionStorage.removeItem("user");
+        navigate("/");
+    }
 
 
     
@@ -19,9 +28,12 @@ const Layout = ({ children, page, changePage, User}) => {
     <div className='h-screen'>
         <div className='h-full w-full'>
             {/* Upper Navbar */}
-            <div className='bg-pri h-[12%] drop-shadow-lg flex'>
+            <div className='bg-pri h-[12%] drop-shadow-lg flex items-center justify-between'>
                 <div className='w-[20%]'>
-                    <img src={logo} alt='logo' className='h-[90%] mx-6'/>
+                    <img src={logo} alt='logo' className='h-[50%] w-[50%] mx-6'/>
+                </div>
+                <div className='p-2 m-2 flex items-center justify-center h-fit rounded-lg bg-pen text-white font-bold select-none hover:cursor-pointer' onClick={() => { handleLogOut() }}>
+                    <p>Log Out</p>
                 </div>
             </div>
 
@@ -33,8 +45,8 @@ const Layout = ({ children, page, changePage, User}) => {
 
                     <div className='flex flex-col items-center mt-4 mb-4'>
                         <img src={photo} alt='pfp' className='rounded-full w-[45%] drop-shadow-lg'/>
-                        <p className='font-bold text-xl mt-2'>{User.firstName + " " + User.lastName}</p>
-                        <p className='font-semibold text-center text-sm text-tri mt-1'>{User.position}</p>
+                        <p className='font-bold text-xl mt-2'>{User?.firstName + " " + User?.lastName}</p>
+                        <p className='font-semibold text-center text-sm text-tri mt-1'>{User?.position}</p>
                     </div>
 
                     <div className='h-fit overflow-auto select-none'>
